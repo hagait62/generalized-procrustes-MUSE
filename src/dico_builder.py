@@ -188,7 +188,7 @@ def cross_match_dictionary(lang_list, dico, dico_inbn, params):
         src_word=row[0]
         if all([src_word in dico[lang][:,0] for lang in lang_list]):
             new_row = [src_word]
-            new_row+=[dico[lang][np.where(dico[lang][:,0]==src_word)][0][1] for lang in lang_list]
+            new_row+=[dico[lang][np.where(dico[lang][:,0]==src_word)][0][1] for lang in lang_list]###TODO: why we take only the first element?
             final_dico.append(new_row)
         elif dico_inbn is not None:
             if row[1] in dico_inbn[params.tgt_lang[1]][:,0]:
@@ -205,7 +205,7 @@ def cross_match_dictionary(lang_list, dico, dico_inbn, params):
                     new_row+=[row[1]]
                     final_dico.append(new_row)
 
-    final_dico = np.array(final_dico,)
+    final_dico = np.array(final_dico,)##TODO: some pairs may repeat
     dico = torch.from_numpy(final_dico)
 
     logger.info('New FINAL train dictionary of %i pairs.' % len(dico))
@@ -223,4 +223,4 @@ def build_dictionary(src_emb, tgt_emb, params, support, s2t_candidates=None, t2s
         dico_inbn[params.tgt_lang[1]] = build_pairwise_dictionary(tgt_emb[params.tgt_lang[0]],tgt_emb[params.tgt_lang[1]],params, s2t_candidates, t2s_candidates)
     else: dico_inbn = None
 
-    return cross_match_dictionary(lang_list, dico, dico_inbn, params)
+    return cross_match_dictionary(lang_list, dico, dico_inbn, params)##TODO: why remove supervied pairs??

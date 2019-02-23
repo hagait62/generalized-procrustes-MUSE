@@ -180,7 +180,7 @@ class Trainer(object):
         Find the best orthogonal matrix mapping using the Orthogonal Procrustes problem
         https://en.wikipedia.org/wiki/Orthogonal_Procrustes_problem
         """
-        A = self.src_emb.weight.data[self.dico[:, 0]]
+        A = self.src_emb.weight.data[self.dico[:, 0]]###TODO: if same row repeats in dico, will have same rows in matrices
         B = self.tgt_emb[self.params.tgt_lang[-1]].weight.data[self.dico[:, 1]]
         W = self.mapping[self.params.src_lang].weight.data
         M = B.transpose(0, 1).mm(A).cpu().numpy()
