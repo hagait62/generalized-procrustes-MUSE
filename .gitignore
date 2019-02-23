@@ -5,6 +5,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyc
 
 # C extensions
 *.so
@@ -122,4 +123,6 @@ dumped/
 embeddings/
 data/
 
+# IDE
+.idea
 # End of https://www.gitignore.io/api/vim,python
