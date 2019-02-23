@@ -13,7 +13,7 @@ import pickle
 from ..utils import get_nn_avg_dist
 import re
 
-DIC_EVAL_PATH = 'data/crosslingual/dictionaries/'
+DIC_EVAL_PATH = '/cortex/users/taitelh/generalized-procrustes-MUSE/data/dictionaries/'#'data/crosslingual/dictionaries/'
 
 
 logger = getLogger()
