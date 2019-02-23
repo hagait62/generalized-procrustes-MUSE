@@ -181,9 +181,9 @@ class Evaluator(object):
         overall_mean_cosine = {x:[] for x in ['nn', 'csls_knn_10']}
         # get normalized embeddings
         src_emb =self.mapping[self.params.src_lang](self.src_emb.weight).data
+        src_emb = src_emb / src_emb.norm(2, 1, keepdim=True).expand_as(src_emb)
         for lang in self.params.tgt_lang:
             tgt_emb =  self.mapping[lang](self.tgt_emb[lang].weight).data
-            src_emb = src_emb / src_emb.norm(2, 1, keepdim=True).expand_as(src_emb)
             tgt_emb = tgt_emb / tgt_emb.norm(2, 1, keepdim=True).expand_as(tgt_emb)
 
             # build dictionary
@@ -206,7 +206,7 @@ class Evaluator(object):
                     mean_cosine = -1e9
                 else:
                     mean_cosine = (src_emb[dico[:dico_max_size, 0]] * tgt_emb[dico[:dico_max_size, 1]]).sum(1).mean()
-                mean=mean_cosine
+                mean=mean_cosine.item()
                 logger.info("Mean cosine (%s method, %s build, %i max size): %.5f"
                             % (dico_method, _params.dico_build, dico_max_size, mean))
                 to_log['mean_cosine-%s-%s-%i_%s' % (dico_method, _params.dico_build, dico_max_size,lang)] = mean
