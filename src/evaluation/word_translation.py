@@ -104,7 +104,7 @@ def load_dictionary(path, word2id1, word2id2,return_numpy=False):
         dico[i, 0] = word2id1[word1]
         dico[i, 1] = word2id2[word2]
 
-    return dico, included
+    return dico
 
 
 def get_word_translation_accuracy(lang1, word2id1, emb1, lang2, word2id2, emb2, method, id2word_src, id2word_tgt,dico_eval):
@@ -120,7 +120,7 @@ def get_word_translation_accuracy(lang1, word2id1, emb1, lang2, word2id2, emb2, 
     #path = '/home/bkl121/MUSEfromScratch/data/crosslingual/dictionaries/{}-{}.5000-6500.txt'.format(lang1,lang2)
     #path = '/home/yova/FBmorph/MUSE/data/crosslingual/processed/%s-%s.partial0' % (lang1, lang2)
     logger.info('Language pair %s-%s' % (lang1, lang2))
-    dico, included = load_dictionary(path, word2id1, word2id2)
+    dico = load_dictionary(path, word2id1, word2id2)
     dico = dico.cuda() if emb1.is_cuda else dico
 
     assert dico[:, 0].max() < emb1.size(0)
