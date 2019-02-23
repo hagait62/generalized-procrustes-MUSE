@@ -269,6 +269,7 @@ def read_txt_embeddings(params, emb_path, lang, full_vocab):
     vectors = []
 
     # load pretrained embeddings
+    source = lang == params.src_lang
     lang = lang
     emb_path = emb_path
     _emb_dim_file = params.emb_dim
