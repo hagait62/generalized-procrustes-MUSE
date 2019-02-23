@@ -30,7 +30,7 @@ parser.add_argument("--exp_path", type=str, default="", help="Where to store exp
 parser.add_argument("--exp_name", type=str, default="debug", help="Experiment name")
 parser.add_argument("--exp_id", type=str, default="", help="Experiment ID")
 parser.add_argument("--cuda", type=bool_flag, default=True, help="Run on GPU")
-parser.add_argument("--export", type=str, default="txt", help="Export embeddings after training (txt / pth)")
+parser.add_argument("--export", type=str, default="", help="Export embeddings after training (txt / pth)")
 
 # data
 parser.add_argument("--src_lang", type=str, default='en', help="Source language")
@@ -55,7 +55,7 @@ parser.add_argument("--dico_max_size", type=int, default=0, help="Maximum genera
 # reload pre-trained embeddings
 parser.add_argument("--src_emb", type=str, default='', help="Reload source embeddings")
 parser.add_argument("--tgt_emb", type=str, default='', help="Reload target embeddings")
-parser.add_argument("--normalize_embeddings", type=str, default="", help="Normalize embeddings before training")
+parser.add_argument("--normalize_embeddings", type=str, default="", help="Normalize embeddings before training")#renorm, center to be as Artetxe
 
 
 # parse parameters
