@@ -152,7 +152,7 @@ class Trainer(object):
                 dico[lang] = load_identical_num_dico(word2id1, word2id2, True)
             # use one of the provided dictionary
             elif dico_train == "default":
-                filename = '%s-%s.0-5000.txt' % (self.params.src_lang, self.params.tgt_lang)
+                filename = '%s-%s.0-5000.txt' % (self.params.src_lang, lang)
                 dico[lang] = load_dictionary(
                     os.path.join(DIC_EVAL_PATH, filename),
                     word2id1, word2id2, True
